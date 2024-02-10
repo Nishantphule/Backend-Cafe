@@ -4,9 +4,11 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const config = require('./utils/config');
 const menuRouter = require("./routes/menuRoutes");
+const paymentRouter = require('./routes/paymentRoutes')
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 
 // connecting to mongoDB
 mongoose.connect(config.MONGO_URL)
@@ -23,8 +25,9 @@ app.get('/main', (request, response) => {
     response.send('<h1>Welcome to cafe Backend App!</h1>');
 });
 
-// menu router
+// routers
 app.use('/menu', menuRouter);
+app.use('/payment', paymentRouter);
 
 // port for server
 const PORT = config.PORT || 8080;
