@@ -1,5 +1,7 @@
 const Razorpay = require('razorpay');
 const { KEY_ID_RAZORPAY, SECRET_RAZORPAY } = require('../utils/config');
+const crypto = require('crypto');
+const paymentSchema = require("../models/payment")
 
 const paymentController = {
     createOrder: async (req, res) => {
@@ -46,6 +48,17 @@ const paymentController = {
 
             // THE PAYMENT IS LEGIT & VERIFIED
             // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
+
+            const newPayment = paymentSchema({
+                razorpayDetails: {
+                    orderId: razorpayOrderId,
+                    paymentId: razorpayPaymentId,
+                    signature: razorpaySignature,
+                },
+                success: true,
+            });
+
+            await newPayment.save();
 
             res.status(200).json({
                 msg: "success",

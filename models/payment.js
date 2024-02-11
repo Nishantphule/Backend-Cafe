@@ -1,26 +1,14 @@
 const mongoose = require("mongoose");
 
 const paymentSchema = new mongoose.Schema({
-    name: {
-        type: String
+    razorpayDetails: {
+        orderId: String,
+        paymentId: String,
+        signature: String,
     },
-    amount: {
-        type: Number
-    },
-    order_id: {
-        type: String
-    },
-    razorpay_payment_id: {
-        type: String,
-        default: null
-    },
-    razorpay_signature: {
-        type: String,
-        default: null
-    }
-}, {
-    timestamps: true
+    success: Boolean,
 })
+
 
 paymentSchema.set('toJSON', {
     transform: (document, returnedObject) => {
