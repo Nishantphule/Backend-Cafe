@@ -27,7 +27,7 @@ app.get('/main', (request, response) => {
 
 // routers
 app.use('/menu', menuRouter);
-app.use('/payment', paymentRouter);
+app.use('/order', paymentRouter);
 
 // port for server
 const PORT = config.PORT || 8080;
