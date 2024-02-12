@@ -36,7 +36,7 @@ const paymentController = {
             // Creating our own digest
             // The format should be like this:
             // digest = hmac_sha256(orderCreationId + "|" + razorpayPaymentId, secret);
-            const shasum = crypto.createHmac("sha256", "w2lBtgmeuDUfnJVp43UpcaiT");
+            const shasum = crypto.createHmac("sha256", SECRET_RAZORPAY);
 
             shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
 
