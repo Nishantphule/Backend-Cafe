@@ -9,7 +9,6 @@ const paymentSchema = new mongoose.Schema({
     success: Boolean,
 })
 
-
 paymentSchema.set('toJSON', {
     transform: (document, returnedObject) => {
         returnedObject.paymentId = returnedObject._id.toString();
